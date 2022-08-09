@@ -16,6 +16,7 @@ tip = int(tip)
 ppl = int(ppl)
 
 ind_bill = (ttl_bill / ppl) * (1 + tip / 100)
-ind_bill = round(ind_bill,2)
+#ind_bill = round(ind_bill,2)
+ind_bill = "{:.2f}".format(ind_bill)
 
 print(f"Each person shoud pay: ${ind_bill}")

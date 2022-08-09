@@ -12,7 +12,7 @@ tip = input("How much tip would you like to give? 10, 12, or 15? ")
 ppl = input("How many people to split the bill? ")
 
 ttl_bill = float(ttl_bill)
-tip = float(tip)
+tip = int(tip)
 ppl = int(ppl)
 
 ind_bill = (ttl_bill / ppl) * (1 + tip / 100)

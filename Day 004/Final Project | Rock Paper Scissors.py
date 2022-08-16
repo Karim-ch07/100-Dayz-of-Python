@@ -30,21 +30,21 @@ import random
 
 choices = [rock, paper, scissors]
 choice = int(input("What do you choose? Type 0 for Rock, 1 for Paper, or 2 for Scissors.\n"))
-print(choices[choice])
 
-print("Computer chose:\n")
-Comp_choice = random.randint(0,2)
-print(choices[Comp_choice])
-
-if choice == 0 and Comp_choice == 2:
-  state = 'Win'
-elif choice == 1 and Comp_choice == 0:
-  state = 'Win'
-elif choice == 2 and Comp_choice == 1:
-  state = 'Win'
-elif choice == Comp_choice:
-  state = 'Draw'
+if choice >= 3 or choice < 0:
+  print("You typed an invalid number, you lose!")
 else:
-  state = 'Lose'
+  print(choices[choice])
+  
+  print("Computer chose:\n")
+  Comp_choice = random.randint(0,2)
+  print(choices[Comp_choice])
 
-print(f"You {state}")
+  if choice == 0 and Comp_choice == 2:
+    print("You Win!")
+  elif choice > Comp_choice:
+    print("You Win!")
+  elif choice < Comp_choice:
+    print("You Loose!")
+  elif choice == Comp_choice:
+    print("It is a Draw!")

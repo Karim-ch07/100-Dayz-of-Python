@@ -15,9 +15,5 @@ def jump():
     move()
     turn_left()
     
-jump()
-jump()
-jump()
-jump()
-jump()
-jump()
+for step in range(0, 6):
+    jump()

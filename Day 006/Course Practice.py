@@ -10,7 +10,7 @@ def move_3():
     move()
     move()
     
-def scare():
+def square():
     turn_left()
     move_3()
     turn_right()
@@ -20,4 +20,4 @@ def scare():
     turn_right()
     move_3()
     
-scare()
+square()

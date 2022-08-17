@@ -11,14 +11,36 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 
 #Eazy Level - Order not randomised:
 #e.g. 4 letter, 2 symbol, 2 number = JduE&!91
-password = ""
-for i in range(0, nr_letters):
-  password += letters[random.randint(0, len(letters))]
-for i in range(0, nr_symbols):
-  password += symbols[random.randint(0, len(symbols))]
-for i in range(0, nr_numbers):
-  password += numbers[random.randint(0, len(numbers))]
 
-print(password)
+easy_password = ""
+
+for letter in range(0, nr_letters):
+  easy_password += letters[random.randint(0, len(letters))]
+for symbol in range(0, nr_symbols):
+  easy_password += symbols[random.randint(0, len(symbols))]
+for number in range(0, nr_numbers):
+  easy_password += numbers[random.randint(0, len(numbers))]
+
+print(easy_password)
+
 #Hard Level - Order of characters randomised:
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
+
+password_length = nr_letters + nr_numbers + nr_symbols
+hard_password = ""
+
+for i in range(0, password_length):
+  if 0 < nr_letters:
+    hard_password += letters[random.randint(0, len(letters))]
+    nr_letters -= 1
+  if 0 < nr_symbols:
+    hard_password += symbols[random.randint(0, len(symbols))]
+    nr_symbols -= 1
+  if 0 < nr_numbers:
+    hard_password += numbers[random.randint(0, len(numbers))]
+    nr_numbers -= 1
+  if 0 < nr_letters:
+    hard_password += letters[random.randint(0, len(letters))]
+    nr_letters -= 1
+
+print(hard_password)

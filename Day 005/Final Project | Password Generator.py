@@ -15,32 +15,29 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 easy_password = ""
 
 for letter in range(0, nr_letters):
-  easy_password += letters[random.randint(0, len(letters))]
+  easy_password += random.choice(letters)
 for symbol in range(0, nr_symbols):
-  easy_password += symbols[random.randint(0, len(symbols))]
+  easy_password += random.choice(symbols)
 for number in range(0, nr_numbers):
-  easy_password += numbers[random.randint(0, len(numbers))]
+  easy_password += random.choice(numbers)
 
-print(easy_password)
+print(f"Easy password : {easy_password}")
 
 #Hard Level - Order of characters randomised:
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
 
-password_length = nr_letters + nr_numbers + nr_symbols
+hard_password_list = []
 hard_password = ""
+for letter in range(0, nr_letters):
+  hard_password_list.append(random.choice(letters))
+for symbol in range(0, nr_symbols):
+  hard_password_list.append(random.choice(symbols))
+for number in range(0, nr_numbers):
+  hard_password_list.append(random.choice(numbers))
 
-for i in range(0, password_length):
-  if 0 < nr_letters:
-    hard_password += letters[random.randint(0, len(letters))]
-    nr_letters -= 1
-  if 0 < nr_symbols:
-    hard_password += symbols[random.randint(0, len(symbols))]
-    nr_symbols -= 1
-  if 0 < nr_numbers:
-    hard_password += numbers[random.randint(0, len(numbers))]
-    nr_numbers -= 1
-  if 0 < nr_letters:
-    hard_password += letters[random.randint(0, len(letters))]
-    nr_letters -= 1
+random.shuffle(hard_password_list)
 
-print(hard_password)
+for char in hard_password_list:
+  hard_password += char
+
+print(f"Hard password : {hard_password}")

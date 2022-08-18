@@ -78,7 +78,6 @@ for _ in range(word_length):
 
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
-    found = False
 
     #Check guessed letter
     for position in range(word_length):
@@ -86,12 +85,11 @@ while not end_of_game:
         # print(f"Current position: {position}\n Current letter: {letter}\n Guessed letter: {guess}")
         if letter == guess:
             display[position] = letter
-            found = True
 
     #TODO-2: - If guess is not a letter in the chosen_word,
     #Then reduce 'lives' by 1. 
     #If lives goes down to 0 then the game should stop and it should print "You lose."
-    if found == False:
+    if guess not in chosen_word:
         lives -= 1
       
     if lives == 0:

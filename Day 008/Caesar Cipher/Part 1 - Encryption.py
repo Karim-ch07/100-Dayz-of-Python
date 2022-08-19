@@ -22,7 +22,7 @@ def encrypt(plain_text, shift):
         if shifted_idx >= len(alphabet):
             shifted_idx -= len(alphabet)
         cipher_text += alphabet[shifted_idx]
-    print(f"The encoded text is mjqqt {cipher_text}")
+    print(f"The encoded text is {cipher_text}")
     ##🐛Bug alert: What happens if you try to encode the word 'civilization'?🐛
 
 #TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message. 

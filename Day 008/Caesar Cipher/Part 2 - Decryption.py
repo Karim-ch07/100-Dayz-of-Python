@@ -4,24 +4,27 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-def encrypt(plain_text, shift_amount):
-  cipher_text = ""
-  for letter in plain_text:
-    position = alphabet.index(letter)
-    new_position = position + shift_amount
-    cipher_text += alphabet[new_position]
+def encrypt(plain_text, shift):
+  cipher_text = ''
+  for char in plain_text:
+      org_idx = alphabet.index(char)
+      shifted_idx = org_idx + shift
+      if shifted_idx >= len(alphabet):
+          shifted_idx -= len(alphabet)
+      cipher_text += alphabet[shifted_idx]
   print(f"The encoded text is {cipher_text}")
 
 #TODO-1: Create a different function called 'decrypt' that takes the 'text' and 'shift' as inputs.
 def decrypt(cipher_text, shift_amount):
   plain_text = ""
-  for char in range(len(cipher_text)):
-    org_idx = alphabet.index(cipher_text[char])
+  for char in cipher_text:
+    org_idx = alphabet.index(char)
     shifted_idx = org_idx - shift
     if shifted_idx < 0:
       shifted_idx += len(alphabet)
     plain_text += alphabet[shifted_idx]
   print(f"The decoded text is {plain_text}")
+  
   #TODO-2: Inside the 'decrypt' function, shift each letter of the 'text' *backwards* in the alphabet by the shift amount and print the decrypted text.  
   #e.g. 
   #cipher_text = "mjqqt"

@@ -26,3 +26,47 @@ print(programming_dictionary["Bug"])
 for key in programming_dictionary:
   print(key)
   print(programming_dictionary[key])
+
+#Nesting.
+capitals = {
+  "France" : "Paris",
+  "Germany" : "Berlin"
+}
+
+#Nesting a list in a dictionary.
+travel_log = {
+  "France" : ["Paris", "Lille", "Dijon"],
+  "Germany" : ["Berlin", "Hamburg", "Stuttgart"],
+}
+
+#Nesting a dictionary in a dictionary.
+cities_visited = {
+  "France" : {"cities_visited" : ["Paris", "Lille", "Dijon"], "total_visits" : 12},
+  "Germany" : {"cities_visited" : ["Berlin", "Hamburg", "Stuttgart"], "total_visits" : 14},
+}
+cities_visited_count = {
+  "France" : {
+    "Paris" : 2,
+    "Lille" : 3,
+    "Dijon" : 1,
+  },
+  "Germany" : {
+    "Berlin" : 3,
+    "Hamburg" : 1,
+    "Stuttgart" : 5,
+  }
+}
+
+#Nesting a dictionary in a list.
+travel_log = [
+  {
+    "country" : "France",
+    "cities_visited" : ["Paris", "Lille", "Dijon"],
+    "tatl_visits" : 12,
+  },
+  {
+    "country" : "Germany",
+    "cities_visited" : ["Berlin", "Hamburg", "Stuttgart"],
+    "tatl_visits" : 14,
+  }
+]

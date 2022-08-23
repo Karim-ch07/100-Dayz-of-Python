@@ -1,7 +1,5 @@
-from art import logo
-print(logo)
-
 #Calculator
+from art import logo
 
 #Add
 def add(n1, n2):
@@ -26,21 +24,27 @@ operations = {
   "/" : devide,
 }
 
-nbr_1 = int(input("What is the first number?\t"))
-nbr_2 = int(input("What is the second number?\t"))
+def calculator():
+  print(logo)
+  nbr_1 = float(input("What is the first number?\t"))
+  
+  for operation in operations:
+    print(operation)
+  
+  repeat = True
+  
+  while repeat:
+    operation_symbol = input("Pick an operation:\t")
+    nbr_2 = float(input("What is the next number?\t"))
+    
+    result = round(operations[operation_symbol](nbr_1, nbr_2), 1)
+    print(f"{nbr_1} {operation_symbol} {nbr_2} = {result}")
+    
+    again = input(f"Type 'y' to continue with {result}, or type 'n' to start a new calculation.\t")
+    if again == "n":
+      repeat = False
+      calculator()
+    elif again == "y":
+      nbr_1 = result
 
-for operation in operations:
-  print(operation)
-
-operation_symbol = input("Pick an operation from the line above:\t")
-
-result_1 = operations[operation_symbol](nbr_1, nbr_2)
-
-print(f"{nbr_1} {operation_symbol} {nbr_2} = {result_1}")
-
-operation_symbol = input("Pick another operation:\t")
-nbr_3 = int(input("What is the next number?\t"))
-
-result_2 = operations[operation_symbol](result_1, nbr_3)
-
-print(f"{result_1} {operation_symbol} {nbr_3} = {result_2}")
+calculator()

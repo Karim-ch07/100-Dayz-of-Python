@@ -74,6 +74,7 @@ def check_resources(choice):
         if resources[ingredient] < choice_ing[ingredient]:
             sufficient_resources = False
             print(f"Sorry there is not enough {ingredient}.")
+            return sufficient_resources
     return sufficient_resources
 
 
@@ -105,8 +106,8 @@ def process_coins():
 # TODO: 6. c. If the user has inserted too much money, the machine should offer change.
 def check_credit(enough_resources, choice):
     sufficient_credit = True
-    credit = process_coins()
     if enough_resources:
+        credit = process_coins()
         if credit < MENU[choice]["cost"]:
             print("Sorry that's not enough money. Money refunded.")
             sufficient_credit = False
@@ -115,7 +116,6 @@ def check_credit(enough_resources, choice):
                 change = credit - MENU[choice]["cost"]
                 print(f"Here is {change} in change.")
     return sufficient_credit
-
     # this should be defined as a function
 
 
@@ -125,7 +125,7 @@ def check_credit(enough_resources, choice):
 
 def make_coffee(enough_resources, enough_credit, choice):
     if enough_resources and enough_credit:
-        for resource in resources:
+        for resource in MENU[choice]["ingredients"]:
             if resource == "water" or resource == "milk" or resource == "coffee":
                 resources[resource] -= MENU[choice]["ingredients"][resource]
 

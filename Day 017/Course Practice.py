@@ -11,8 +11,6 @@
 # user_2.id = "007"
 # user_2.username = "agent too"
 
-##################################################################################
-
 class User:
     def __init__(self, user_id, username):
         self.id = user_id

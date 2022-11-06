@@ -9,6 +9,7 @@ turtle.shape(image)
 
 guess = True
 correct_guesses = []
+states_to_learn = []
 
 data = pandas.read_csv("50_states.csv")
 states = data.state.to_list()
@@ -24,6 +25,12 @@ while guess:
 
     t_answer = answer.title()
 
+    if t_answer == "Exit":
+        for guessed in states:
+            if guessed not in correct_guesses:
+                states_to_learn.append(guessed)
+        pandas.DataFrame(states_to_learn).to_csv("States to learn.csv")
+        break
     if t_answer in states:
         correct_guesses.append(t_answer)
         text = turtle.Turtle()
@@ -31,5 +38,3 @@ while guess:
         text.penup()
         text.goto(int(data.loc[data.state.isin([t_answer]), "x"]), int(data.loc[data.state.isin([t_answer]), "y"]))
         text.write(t_answer)
-
-screen.exitonclick()

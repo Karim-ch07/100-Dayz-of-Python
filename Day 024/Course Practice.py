@@ -20,3 +20,8 @@
 with open("/Users/_/OneDrive/Bureau/external.txt") as file:
     contents = file.read()
     print(contents)
+
+#or a relative file path (relative to the work directory)
+with open("../../OneDrive/Bureau/external.txt") as file:
+    contents = file.read()
+    print(contents)

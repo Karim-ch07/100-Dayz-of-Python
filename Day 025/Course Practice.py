@@ -2,22 +2,30 @@
 #     data = data_file.readlines()
 #     print(data)
 
-import csv
+# import csv
+#
+# with open("weather_data.csv") as data_file:
+#     data = csv.reader(data_file)
+#     temperature = []
+#     day = []
+#     condition = []
+#     header = False
+#     for row in data:
+#         if header:
+#             day.append(row[0])
+#             temperature.append(int(row[1]))
+#             condition.append(row[2])
+#         header = True
+#         print(row)
+#
+#     print(day)
+#     print(temperature)
+#     print(condition)
 
-with open("weather_data.csv") as data_file:
-    data = csv.reader(data_file)
-    temperature = []
-    day = []
-    condition = []
-    header = False
-    for row in data:
-        if header:
-            day.append(row[0])
-            temperature.append(int(row[1]))
-            condition.append(row[2])
-        header = True
-        print(row)
+import pandas
 
-    print(day)
-    print(temperature)
-    print(condition)
+data = pandas.read_csv("weather_data.csv")
+print(data)
+
+temperature = data["temp"]
+print(temperature)

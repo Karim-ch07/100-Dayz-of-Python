@@ -25,7 +25,47 @@
 import pandas
 
 data = pandas.read_csv("weather_data.csv")
-print(data)
+# print(data)
+#
+# temperature = data["temp"]
+# print(temperature)
 
-temperature = data["temp"]
-print(temperature)
+data_dict = data.to_dict()
+print(data_dict)
+
+temp_list = data["temp"].to_list()
+print(temp_list)
+
+# avg_temp = sum(temp_list)/len(temp_list)
+# print(avg_temp)
+
+print(data["temp"].mean())
+
+print(data["temp"].max())
+
+#get data in columns
+print(data["condition"])
+#in the bg, pandas converts the columns to attributes respectfully to the 1st row in the column
+print(data.condition)
+
+#get data in row
+print(data[data.day == "Monday"])
+print(data[data.temp == data.temp.max()])
+
+sunday = data[data.day == "Sunday"]
+print(sunday.condition)
+
+print(sunday.temp)
+sunday_temp_fahrenheit = 32 + int(sunday.temp) * 9 / 5
+print(sunday_temp_fahrenheit)
+
+#create a dataframe from scratch
+scratch_dict = {
+    "students" : ["Amy", "John", "Tommy"],
+    "scores" : [76, 55, 90]
+}
+
+scratch = pandas.DataFrame(scratch_dict)
+print(scratch)
+
+scratch.to_csv("new_data.csv")

@@ -8,8 +8,7 @@ NATO = {row.letter:row.code for (index,row) in NATO_dataframe.iterrows()}
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
-user_word = input("Tell me a word!\t")
-user_word = user_word.upper()
+user_word = input("Tell me a word!\t").upper()
 user_NATO = []
 
 for user_letter in user_word:

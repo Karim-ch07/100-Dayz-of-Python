@@ -20,7 +20,12 @@ def reset_reps():
     global reps
     reps = 0
 
+
 def reset_timer():
+    # Start timer to give var timer a value | Otherwise, pressing reset without starting generate an error
+    # None instead of str
+    start_timer()
+    # resetting to initial state
     window.after_cancel(timer)
     reset_reps()
     canvas.itemconfig(text_timer, text=f"{0:02d}:{0:02d}")
@@ -37,24 +42,18 @@ def start_timer():
 
     if reps == 7:
         reset_timer()
-        # label_timer.config(text="TIMER", fg=GREEN)
-        # reps = 0
-        # allow_start = True
 
     elif reps % 2 == 1 and reps < 6:
-        # count_down(60*WORK_MIN)
+        count_down(60*WORK_MIN)
         label_timer.config(text="WORK", fg=GREEN)
-        count_down(5)
 
     elif reps % 2 == 0 and reps < 6:
-        # count_down(60*SHORT_BREAK_MIN)
+        count_down(60*SHORT_BREAK_MIN)
         label_timer.config(text="SHORT BREAK", fg=PINK)
-        count_down(5)
 
     else:
-        # count_down(60*LONG_BREAK_MIN)
+        count_down(60*LONG_BREAK_MIN)
         label_timer.config(text="LONG BREAK", fg=RED)
-        count_down(5)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
@@ -62,16 +61,10 @@ def start_timer():
 def count_down(count):
     global timer
 
-    min = math.floor(count / 60)
-    sec = count % 60
+    min_ = math.floor(count / 60)
+    sec_ = count % 60
 
-    # Dynamic types
-    # if sec < 10:
-    #     sec = f"0{sec}"
-    #
-
-    # canvas.itemconfig(text_timer, text=f"{int(count/60):02d}:{(count%60):02d}")
-    canvas.itemconfig(text_timer, text=f"{min:02d}:{sec:02d}")
+    canvas.itemconfig(text_timer, text=f"{min_:02d}:{sec_:02d}")
 
     if count > 0:
         timer = window.after(1000, count_down, count - 1)
@@ -96,10 +89,6 @@ canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
 canvas.create_image(100, 112, image=img_png)
 text_timer = canvas.create_text(100, 132, text="00:00", fill="white", font=(FONT_NAME, 24, "bold"))
 canvas.grid(column=1, row=1)
-
-# Count Down
-
-# count_down(5)
 
 # Label
 

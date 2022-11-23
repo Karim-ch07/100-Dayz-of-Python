@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -10,13 +11,25 @@ def generate_pw():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def save_date():
-    with open("data.txt", "a") as file:
-        file.write(f"Website: {input_website.get()}\t|\tEmail/Username: {input_email.get()}\t|\tPassword: {input_pw.get()}\n")
+    website = input_website.get()
+    email = input_email.get()
+    pw = input_pw.get()
 
-    input_website.delete(0, END)
-    input_website.focus()
-    # input_email.delete(0, END)
-    input_pw.delete(0, END)
+    if len(website) == 0 or len(email) == 0 or len(pw) == 0:
+        messagebox.showwarning(title="Oops", message="Please do not leave the fields empty!")
+    else:
+        is_ok = messagebox.askokcancel(title=f"{website} Password!",
+                                       message=f"You entered:\nEmail: {email}\nPassword: {pw}\nIs "
+                                               f"it okay to save these details?")
+
+        if is_ok:
+            with open("data.txt", "a") as file:
+                file.write(f"Website: {website}\t|\tEmail/Username: {email}\t|\tPassword: {pw}\n")
+
+            input_website.delete(0, END)
+            input_website.focus()
+            # input_email.delete(0, END)
+            input_pw.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #

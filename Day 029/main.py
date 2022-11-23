@@ -1,13 +1,23 @@
 from tkinter import *
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+
+def generate_pw():
+    pass
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def save_date():
-    file = open("data.txt", "a")
-    file.write(f"Website: {input_website}\nEmail/Username:{input_email}\nPasswod:{input_pw}\n\n")
-    file.close()
+    with open("data.txt", "a") as file:
+        file.write(f"Website: {input_website.get()}\t|\tEmail/Username: {input_email.get()}\t|\tPassword: {input_pw.get()}\n")
+
+    input_website.delete(0, END)
+    input_website.focus()
+    # input_email.delete(0, END)
+    input_pw.delete(0, END)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -44,14 +54,14 @@ input_website.grid(column=1, row=1, columnspan=2)
 
 input_email = Entry(width=59)
 input_email.grid(column=1, row=2, columnspan=2)
-input_email.insert(0,  string="sample.sample@email.com")
+input_email.insert(0, string="sample.sample@email.com")
 
 input_pw = Entry(width=34)
 input_pw.grid(column=1, row=3)
 
 # Button
 
-button_generate = Button(text="Generate Password", width=20, highlightthickness=0)
+button_generate = Button(text="Generate Password", width=20, highlightthickness=0, command=generate_pw)
 button_generate.grid(column=2, row=3)
 
 button_add = Button(text="Add", width=50, highlightthickness=0, command=save_date)

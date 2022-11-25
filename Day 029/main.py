@@ -30,7 +30,7 @@ def generate_pw():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
-def save_date():
+def save_data():
     website = input_website.get()
     email = input_email.get()
     pw = input_pw.get()
@@ -97,7 +97,7 @@ input_pw.grid(column=1, row=3)
 button_generate = Button(text="Generate Password", width=20, highlightthickness=0, command=generate_pw)
 button_generate.grid(column=2, row=3)
 
-button_add = Button(text="Add", width=50, highlightthickness=0, command=save_date)
+button_add = Button(text="Add", width=50, highlightthickness=0, command=save_data)
 button_add.grid(column=1, row=4, columnspan=2)
 
 window.mainloop()

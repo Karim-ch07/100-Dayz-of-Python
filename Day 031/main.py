@@ -1,9 +1,7 @@
 from tkinter import *
 from pandas import *
 from random import *
-from tkinter import messagebox
-import pyperclip
-import json
+
 
 BACKGROUND_COLOR = "#B1DDC6"
 FONT_NAME = "Ariel"
@@ -11,9 +9,16 @@ DELAY = 5000
 
 # ---------------------------- GAME LOGIC ------------------------------- #
 
-data = read_csv("./data/french_words.csv")
-to_learn = data.to_dict(orient="records")
 current_pair = {}
+to_learn = {}
+
+try:
+    data = read_csv("./data/words_to_learn.csv")
+except FileNotFoundError:
+    org_data = read_csv("./data/french_words.csv")
+    to_learn = org_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
 
 
 def gen_card():
@@ -25,7 +30,7 @@ def gen_card():
     canvas.itemconfig(canvas_image, image=img_card_front)
     canvas.itemconfig(text_word, text=current_pair["French"], fill="black")
     canvas.itemconfig(text_title, text="French", fill="black")
-    window.after(DELAY, func=flip_card)
+    after_id = window.after(DELAY, func=flip_card)
 
 
 def flip_card():
@@ -34,6 +39,12 @@ def flip_card():
     canvas.itemconfig(canvas_image, image=img_card_back)
     canvas.itemconfig(text_word, text=current_pair["English"], fill="white")
     canvas.itemconfig(text_title, text="English", fill="white")
+
+
+def known_card():
+    to_learn.remove(current_pair)
+    DataFrame(to_learn).to_csv("./data/words_to_learn.csv", index=False)
+    gen_card()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -59,7 +70,7 @@ canvas.grid(column=0, row=0, columnspan=2)
 # Button
 
 img_right = PhotoImage(file="./images/right.png")
-button_right = Button(image=img_right, highlightthickness=0, command=gen_card)
+button_right = Button(image=img_right, highlightthickness=0, command=known_card)
 button_right.grid(column=1, row=1)
 
 img_wrong = PhotoImage(file="./images/wrong.png")

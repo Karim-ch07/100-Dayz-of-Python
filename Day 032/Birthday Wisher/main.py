@@ -3,13 +3,12 @@ from datetime import *
 from random import *
 from smtplib import *
 
-
 EMAIL_SENDER = "tester.py99@gmail.com"
 APP_PASSWORD = "juslsfmekfbyvpnn"
 PLACEHOLDER = "[NAME]"
 
 # 1. Update the birthdays.csv
-database = {}
+
 try:
     data = read_csv("birthdays.csv")
 
@@ -17,14 +16,13 @@ except FileNotFoundError:
     print("File Not Found! >> Data CSV.")
 
 else:
-    database = {(data_row["month"], data_row["day"]): data_row for (index, data_row) in data.iterrows()}
+    database = {(data_row["month"], data_row["day"]) : data_row for (index, data_row) in data.iterrows()}
     print(database)
-
     # 2. Check if today matches a birthday in the birthdays.csv
     now = datetime.now()
     today = (now.month, now.day)
 
-    for today in database:
+    if today in database:
 
         per = database[today]
         name = per["name"].title()
@@ -42,14 +40,13 @@ else:
 
         # 4. Send the letter generated in step 3 to that person's email address.
         else:
-            # subject = f"Happy Birthday {name}"
-            # with SMTP("smtp.gmail.com", port=587) as connect:
-            #     connect.starttls()
-            #     connect.login(user=EMAIL_SENDER, password=APP_PASSWORD)
-            #     connect.sendmail(
-            #         from_addr=EMAIL_SENDER,
-            #         to_addrs=email,
-            #         msg=f"Subject: {subject}\n\n"
-            #             f"{letter}"
-            #     )
-            print(f"sent to {email}")
+            subject = f"Happy Birthday {name}"
+            with SMTP("smtp.gmail.com", port=587) as connect:
+                connect.starttls()
+                connect.login(user=EMAIL_SENDER, password=APP_PASSWORD)
+                connect.sendmail(
+                    from_addr=EMAIL_SENDER,
+                    to_addrs=email,
+                    msg=f"Subject: {subject}\n\n"
+                        f"{letter}"
+                )

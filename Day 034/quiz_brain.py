@@ -17,16 +17,16 @@ class QuizBrain:
         self.question_number += 1
         question_text = html.unescape(self.current_question.text)
         return f"Q.{self.question_number}: {question_text}"
-        # user_answer = input(f"Q.{self.question_number}: {question_text} (True/False): ")
-        # self.check_answer(user_answer)
 
     def check_answer(self, user_answer):
         correct_answer = self.current_question.answer
         if user_answer.lower() == correct_answer.lower():
             self.score += 1
-            print("You got it right!")
+            return True
         else:
-            print("That's wrong.")
+            return False
 
-        print(f"Your current score is: {self.score}/{self.question_number}")
-        print("\n")
+    def reset(self):
+        self.question_number = 0
+        self.score = 0
+        self.current_question = None

@@ -56,5 +56,11 @@ pixel_update = {
     "quantity": "3"
 }
 
-response = requests.put(url=PUT_PIXEL_ENDPOINT, json=pixel_update, headers=headers)
+# response = requests.put(url=PUT_PIXEL_ENDPOINT, json=pixel_update, headers=headers)
+# print(response.text)
+
+DELETE_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}/{date_formatted}"
+
+response = requests.delete(url=PUT_PIXEL_ENDPOINT, headers=headers)
 print(response.text)
+

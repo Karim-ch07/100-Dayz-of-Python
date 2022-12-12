@@ -18,10 +18,10 @@ user_params = {
 GRAPH_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs"
 
 graph_config = {
-    "id": "graph-1",
+    "id": "graph-2",
     "name": "Programing Graph",
-    "unit": "Lines",
-    "type": "float",
+    "unit": "contributions",
+    "type": "int",
     "color": "kuro",
     "timezone": "Poland",
 }
@@ -30,5 +30,16 @@ headers = {
     "X-USER-TOKEN": TOKEN,
 }
 
-response = requests.post(url=GRAPH_ENDPOINT, json=graph_config, headers=headers)
+# response = requests.post(url=GRAPH_ENDPOINT, json=graph_config, headers=headers)
+# print(response.text)
+
+POST_PIXEL_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_config['id']}"
+
+pixel_data = {
+    "date": "20221211",
+    "quantity": "1",
+    # "optionalData": "",
+}
+
+response = requests.post(url=POST_PIXEL_ENDPOINT, json=pixel_data, headers=headers)
 print(response.text)

@@ -43,12 +43,12 @@ date_formatted = date.strftime("%Y%m%d")
 
 pixel_data = {
     "date": date_formatted,
-    "quantity": "7",
+    "quantity": input("How many contributions have you submitted today?"),
     # "optionalData": "",
 }
 
-# response = requests.post(url=POST_PIXEL_ENDPOINT, json=pixel_data, headers=headers)
-# print(response.text)
+response = requests.post(url=POST_PIXEL_ENDPOINT, json=pixel_data, headers=headers)
+print(response.text)
 
 PUT_PIXEL_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}/{date_formatted}"
 
@@ -61,6 +61,6 @@ pixel_update = {
 
 DELETE_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}/{date_formatted}"
 
-response = requests.delete(url=PUT_PIXEL_ENDPOINT, headers=headers)
-print(response.text)
+# response = requests.delete(url=PUT_PIXEL_ENDPOINT, headers=headers)
+# print(response.text)
 

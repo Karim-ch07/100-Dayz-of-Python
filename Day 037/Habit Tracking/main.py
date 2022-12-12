@@ -1,7 +1,10 @@
 import requests
+from datetime import *
 
 TOKEN = ""
 USERNAME = ""
+
+GRAPH_ID = "graph-2"
 
 PIXELA_ENDPOINT = "https://pixe.la/v1/users"
 
@@ -18,7 +21,7 @@ user_params = {
 GRAPH_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs"
 
 graph_config = {
-    "id": "graph-2",
+    "id": GRAPH_ID,
     "name": "Programing Graph",
     "unit": "contributions",
     "type": "int",
@@ -35,11 +38,23 @@ headers = {
 
 POST_PIXEL_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_config['id']}"
 
+date = datetime.now()
+date_formatted = date.strftime("%Y%m%d")
+
 pixel_data = {
-    "date": "20221211",
-    "quantity": "1",
+    "date": date_formatted,
+    "quantity": "7",
     # "optionalData": "",
 }
 
-response = requests.post(url=POST_PIXEL_ENDPOINT, json=pixel_data, headers=headers)
+# response = requests.post(url=POST_PIXEL_ENDPOINT, json=pixel_data, headers=headers)
+# print(response.text)
+
+PUT_PIXEL_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}/{date_formatted}"
+
+pixel_update = {
+    "quantity": "3"
+}
+
+response = requests.put(url=PUT_PIXEL_ENDPOINT, json=pixel_update, headers=headers)
 print(response.text)

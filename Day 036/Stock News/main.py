@@ -1,3 +1,4 @@
+import os
 import requests
 from twilio.rest import Client
 
@@ -10,12 +11,13 @@ STOCK_ENDPOINT = "https://www.alphavantage.co/query?"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything?"
 
 # APIs' Keys
-STOCK_API_KEY = ""
-NEWS_API_KEY = ""
+STOCK_API_KEY = os.environ.get("STOCK_API_KEY")
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
 
 # Twilio Account Information
-account_sid = ""
-auth_token = ""
+account_sid = os.environ.get("ACCOUNT_SID")
+auth_token = os.environ.get("AUTH_TOKEN")
+MY_NUMBER = os.environ.get("MY_NUMBER")
 
 # Private definitions
 OPEN = "1. open"
@@ -64,7 +66,7 @@ if abs(percentage_change) >= 5:
         message = client.messages.create(
             body=article,
             from_="+15108801602",
-            to="+48729339635",
+            to=MY_NUMBER,
         )
 
         print(message.status)

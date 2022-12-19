@@ -1,10 +1,14 @@
+import os
 import requests
 from twilio.rest import Client
 
-account_sid = "[ACCOUNT SID]"
-auth_token = "[TOKEN]"
+account_sid = os.environ.get("ACCOUNT_SID")
+auth_token = os.environ.get("AUTH_TOKEN")
 
-API_KEY = "[API KEY]"
+MY_NUMBER = os.environ.get("MY_NUMBER")
+
+API_KEY = os.environ.get("API_KEY")
+
 OWM_WEATHER_EP = "https://api.openweathermap.org/data/2.5/weather?"
 OWM_FORECAST_EP = "https://api.openweathermap.org/data/2.5/forecast?"
 OWM_ONECALL_EP = "https://api.openweathermap.org/data/2.5/onecall?"
@@ -39,8 +43,8 @@ if will_rain:
     client = Client(account_sid, auth_token)
     message = client.messages.create(
         body="It is going to rain, take an umbrella!",
-        from_="+SOURCE NO",
-        to="+VERIFIED NO",
+        from_="+15108801602",
+        to=MY_NUMBER,
     )
 
 print(message.status)

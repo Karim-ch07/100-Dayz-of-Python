@@ -1,7 +1,6 @@
+import os
 import requests
 from datetime import *
-import os
-
 
 GENDER = "male"
 WEIGHT_KG = "80"

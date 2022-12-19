@@ -1,8 +1,9 @@
+import os
 import requests
 from datetime import *
 
-TOKEN = ""
-USERNAME = ""
+TOKEN = os.environ.get("AUTH_TOKEN")
+USERNAME = os.environ.get("USER_IDENTIFICATION")
 
 GRAPH_ID = "graph-2"
 

@@ -2,6 +2,7 @@ import os
 import string
 import requests
 from flight_data import FlightData
+from pprint import pprint
 
 API_KEY = os.environ.get("API_KEY")
 
@@ -55,17 +56,38 @@ class FlightSearch:
         try:
             data = response.json()["data"][0]
         except IndexError:
-            print(f"No flights found for {fly_to} :(")
-            return None
+            search_params.update({
+                "max_stopovers": 2,
+            })
+            response = requests.get(url=SEARCH_ENDPOINT, params=search_params, headers=tequila_headers)
+            response.raise_for_status()
+            try:
+                data = response.json()["data"][0]
+            except IndexError:
+                return None
+            else:
+                flight = FlightData(
+                    departure_city=data["cityFrom"],
+                    departure_airport_code=data["flyFrom"],
+                    dest_city=data["cityTo"],
+                    dest_airport_code=data["flyTo"],
+                    outbound_date=data["route"][0]["utc_departure"].split("T")[0],
+                    inbound_date=data["route"][3]["utc_departure"].split("T")[0],
+                    lowestprice=data["price"],
+                    stop_overs=1,
+                    via_city=data["route"][0]["cityTo"],
+                )
 
-        flight = FlightData(
-            departure_city=data["cityFrom"],
-            departure_airport_code=data["flyFrom"],
-            dest_city=data["cityTo"],
-            dest_airport_code=data["flyTo"],
-            outbound_date=data["route"][0]["utc_departure"].split("T")[0],
-            inbound_date=data["route"][1]["utc_departure"].split("T")[0],
-            lowestPrice=data["price"],
-        )
+                return flight
+        else:
+            flight = FlightData(
+                departure_city=data["cityFrom"],
+                departure_airport_code=data["flyFrom"],
+                dest_city=data["cityTo"],
+                dest_airport_code=data["flyTo"],
+                outbound_date=data["route"][0]["utc_departure"].split("T")[0],
+                inbound_date=data["route"][1]["utc_departure"].split("T")[0],
+                lowestprice=data["price"],
+            )
 
-        return flight
+            return flight

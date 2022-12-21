@@ -13,7 +13,6 @@ MY_NUMBER = os.environ.get("MY_NUMBER")
 EMAIL_SENDER = os.environ.get("EMAIL_SENDER")
 APP_PASSWORD = os.environ.get("APP_PASSWORD")
 
-
 class NotificationManager:
 
     def __init__(self):

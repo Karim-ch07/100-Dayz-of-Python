@@ -38,39 +38,28 @@ for dest in sheet_dest_data:
         continue
 
     if flight.lowestPrice < dest["lowestPrice"]:
+        to_send = f"Low Price Alert! Only {flight.lowestPrice} PLN to fly from " \
+                  f"{flight.departure_city} | {flight.departure_airport_code} " \
+                  f"to {flight.dest_city} | {flight.dest_airport_code}, " \
+                  f"from {flight.outbound_date} to {flight.inbound_date}.\n"
+        link = f"\nhttps://www.google.com/travel/flights?q=Flights%20to%20" \
+               f"{flight.dest_airport_code}%20from%20{flight.departure_airport_code}" \
+               f"%20on%20{flight.outbound_date}%20through%20{flight.inbound_date}"
+
         if flight.stop_overs == 0:
             notification.send_sms(
-                message=f"Low Price Alert! Only {flight.lowestPrice} PLN to fly from "
-                        f"{flight.departure_city} | {flight.departure_airport_code} "
-                        f"to {flight.dest_city} | {flight.dest_airport_code}, "
-                        f"from {flight.outbound_date} to {flight.inbound_date}.\n"
+                message=to_send
             )
             notification.send_emails(
-                body=f"Low Price Alert! Only {flight.lowestPrice} PLN to fly from "
-                     f"{flight.departure_city} | {flight.departure_airport_code} "
-                     f"to {flight.dest_city} | {flight.dest_airport_code}, "
-                     f"from {flight.outbound_date} to {flight.inbound_date}.\n\n"
-                     f"https://www.google.com/travel/flights?q=Flights%20to%20"
-                     f"{flight.dest_airport_code}%20from%20{flight.departure_airport_code}"
-                     f"%20on%20{flight.outbound_date}%20through%20{flight.inbound_date}",
+                body=to_send+link,
                 emails=emails
             )
         else:
+            stop_over = f"\nFlight has {flight.stop_overs} stop over, via {flight.via_city} City.\n"
             notification.send_sms(
-                message=f"Low Price Alert! Only {flight.lowestPrice} PLN to fly from "
-                        f"{flight.departure_city} | {flight.departure_airport_code} "
-                        f"to {flight.dest_city} | {flight.dest_airport_code}, "
-                        f"from {flight.outbound_date} to {flight.inbound_date}.\n\n"
-                        f"Flight has {flight.stop_overs} stop over, via {flight.via_city} City."
+                message=to_send+stop_over
             )
             notification.send_emails(
-                body=f"Low Price Alert! Only {flight.lowestPrice} PLN to fly from "
-                     f"{flight.departure_city} | {flight.departure_airport_code} "
-                     f"to {flight.dest_city} | {flight.dest_airport_code}, "
-                     f"from {flight.outbound_date} to {flight.inbound_date}.\n\n"
-                     f"Flight has {flight.stop_overs} stop over, via {flight.via_city} City.\n\n"
-                     f"https://www.google.com/travel/flights?q=Flights%20to%20"
-                     f"{flight.dest_airport_code}%20from%20{flight.departure_airport_code}"
-                     f"%20on%20{flight.outbound_date}%20through%20{flight.inbound_date}",
+                body=to_send+stop_over+link,
                 emails=emails
             )

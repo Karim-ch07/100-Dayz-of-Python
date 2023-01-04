@@ -21,25 +21,67 @@ div {
     background-color: #205295;
     height: 200px;
     width: 200px;
+    /*
     border: solid;
     border-width: 10px;
     padding: 20px;
+    */
+    /*
+    display: inline-block;
+    position: relative;
+    */
+    /*
+    position: absolute;
+    */
+    /*
+    position: fixed;
+    */
 }
 
 .middle-container {
     background-color: red;
     height: 200px;
     width: 200px;
+    /*
     border: solid;
     border-width: 20px;
     margin-left: 260px;
+    */
+    /*
+    position: relative;
+    left: 260px;
+    */
+    /*
+    display: inline-block;
+    position: relative;
+    */
+    /*
+    position: absolute;
+    left: 200px;
+    top: 200px
+    */
 }
 
 .bottom-container {
     background-color: blue;
     height: 200px;
     width: 200px;
+    /*
     border: solid;
     border-width: 10px;
     margin-left: 500px;
+    */
+    /*
+    position: relative;
+    left: 500px;
+    */
+    /*
+    display: inline-block;
+    position: relative;
+    */
+    /*
+    position: absolute;
+    left: 400px;
+    top: 400px;
+    */
 }

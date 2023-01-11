@@ -11,8 +11,3 @@ driver.get(URL)
 articles_count = driver.find_element(by="xpath", value="//*[@id='articlecount']/a[1]")
 print(articles_count.text)
 
-# input("click?")
-# articles_count.click()
-# input("close?")
-
-search = driver.find_element(by="xpath", value="//*[@id='searchInput']")

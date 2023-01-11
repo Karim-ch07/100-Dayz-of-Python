@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 
 URL_1 = "https://www.amazon.com/Logitech-Master-Wireless-Mouse-Rechargeable/dp/B071YZJ1G1/ref=sr_1_13?crid" \
@@ -8,6 +9,8 @@ URL_1 = "https://www.amazon.com/Logitech-Master-Wireless-Mouse-Rechargeable/dp/B
       "-intl-ship%2C223&sr=1-13&th=1 "
 
 URL_2 = "https://www.python.org/"
+
+URL_3 = "https://en.m.wikipedia.org/wiki/Main_Page"
 
 chrome_driver_path = "C:/chromedriver.exe"
 service = Service(chrome_driver_path)
@@ -31,7 +34,21 @@ driver.get(URL_2)
 
 # driver.find_elements()
 
-if input() == "1":
-    driver.close()
+# clicking using selenium
+
+# articles_count = driver.find_element(by="xpath", value="//*[@id='articlecount']/a[1]")
+# print(articles_count.text)
+# input("click?")
+# articles_count.click()
+
+
+# search = driver.find_element(by="name", value="q")
+# search.clear()
+# search.click()
+# search.send_keys("python")
+# search.send_keys(Keys.RETURN)
+
+
+input("close?")
 
 

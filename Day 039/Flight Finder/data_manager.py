@@ -1,6 +1,8 @@
 import os
 import requests
 
+#TO DO - database authentication
+# dynamodb creation + authentication 
 USER_ID = os.environ.get("USER_IDENTIFICATION")
 TOKEN = os.environ.get("SHEETY_AUTH_TOKEN")
 
